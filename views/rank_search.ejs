@@ -10,18 +10,165 @@
     <a class="navbar-brand font-weight-bolder" href="#">IGC</a>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Login</a>
+            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">find your game</a>
         </li>
     </ul>
+    <% if (username != null) { %>
+        <a class="nav-link text-white" href="#"><%= username %></a>
+        <button class="btn btn-danger">Log out</button>
+    <% } else {%>
+        <button class="btn btn-success" onclick="location.href='/login'">Login</button>
+    <% }%>
 </nav>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-12 text-center">
-            <svg class="bi bi-search mb-4" width="30px" height="30px" viewBox="0 0 16 16" fill="#780ac2" xmlns="http://www.w3.org/2000/svg">
+        <div class="col-12 text-center mb-0">
+            <svg class="bi bi-search mb-3" width="30px" height="30px" viewBox="0 0 16 16" fill="#780ac2" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
             </svg>
-            <span class="font-weight-light" style="font-size: 50px">Search</span>
+            <span class="font-weight-light" style="font-size: 30px">Search</span>
+        </div>
+        <div class="col-12" >
+            <form class="mx-auto" style="width: 300px">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchWord" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-search">Go</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-2"></div>
+        <div class="col-9">
+            <span class="font-weight-bold" style="font-size: 30px; color: #780ac2">TOP10 Games </span>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-8">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3><%= game.t1.title%> <span class="badge badge-danger"><%= game.t1.score%></span></h3>
+                                <span><%= game.t1.type%>&nbsp&nbsp&nbsp</span><a href=<%= game.t1.link%>>learn more</a>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2"><span style="font-size: 40px">1</span></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3><%= game.t2.title%> <span class="badge badge-danger"><%= game.t2.score%></span></h3>
+                                <span><%= game.t2.type%>&nbsp&nbsp&nbsp</span><a href=<%= game.t2.link%>>learn more</a>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2"><span style="font-size: 40px">2</span></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3><%= game.t3.title%> <span class="badge badge-danger"><%= game.t3.score%></span></h3>
+                                <span><%= game.t3.type%>&nbsp&nbsp&nbsp</span><a href=<%= game.t3.link%>>learn more</a>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2"><span style="font-size: 40px">3</span></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3><%= game.t4.title%> <span class="badge badge-danger"><%= game.t4.score%></span></h3>
+                                <span><%= game.t4.type%>&nbsp&nbsp&nbsp</span><a href=<%= game.t4.link%>>learn more</a>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2"><span style="font-size: 40px">4</span></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3><%= game.t5.title%> <span class="badge badge-danger"><%= game.t5.score%></span></h3>
+                                <span><%= game.t5.type%>&nbsp&nbsp&nbsp</span><a href=<%= game.t5.link%>>learn more</a>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2"><span style="font-size: 40px">5</span></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3><%= game.t6.title%> <span class="badge badge-danger"><%= game.t6.score%></span></h3>
+                                <span><%= game.t6.type%>&nbsp&nbsp&nbsp</span><a href=<%= game.t6.link%>>learn more</a>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2"><span style="font-size: 40px">6</span></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3><%= game.t7.title%> <span class="badge badge-danger"><%= game.t7.score%></span></h3>
+                                <span><%= game.t7.type%>&nbsp&nbsp&nbsp</span><a href=<%= game.t7.link%>>learn more</a>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2"><span style="font-size: 40px">7</span></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3><%= game.t8.title%> <span class="badge badge-danger"><%= game.t8.score%></span></h3>
+                                <span><%= game.t8.type%>&nbsp&nbsp&nbsp</span><a href=<%= game.t8.link%>>learn more</a>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2"><span style="font-size: 40px">8</span></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3><%= game.t9.title%> <span class="badge badge-danger"><%= game.t9.score%></span></h3>
+                                <span><%= game.t9.type%>&nbsp&nbsp&nbsp</span><a href=<%= game.t9.link%>>learn more</a>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2"><span style="font-size: 40px">9</span></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3><%= game.t10.title%> <span class="badge badge-danger"><%= game.t10.score%></span></h3>
+                                <span><%= game.t10.type%>&nbsp&nbsp&nbsp</span><a href=<%= game.t10.link%>>learn more</a>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2"><span style="font-size: 40px">10</span></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
