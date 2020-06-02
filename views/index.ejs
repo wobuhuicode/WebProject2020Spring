@@ -6,31 +6,29 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to IGN%></p>
-    <div class="alert alert-primary" role="alert">
-      A simple primary alert—check it out!
-    </div>
-    <div class="alert alert-secondary" role="alert">
-      A simple secondary alert—check it out!
-    </div>
-    <div class="alert alert-success" role="alert">
-      A simple success alert—check it out!
-    </div>
-    <div class="alert alert-danger" role="alert">
-      A simple danger alert—check it out!
-    </div>
-    <div class="alert alert-warning" role="alert">
-      A simple warning alert—check it out!
-    </div>
-    <div class="alert alert-info" role="alert">
-      A simple info alert—check it out!
-    </div>
-    <div class="alert alert-light" role="alert">
-      A simple light alert—check it out!
-    </div>
-    <div class="alert alert-dark" role="alert">
-      A simple dark alert—check it out!
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top px-5">
+      <a class="navbar-brand font-weight-bolder" href="#">IGC</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Login</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="card text-white mx-auto" style="max-width: 30rem; margin-top: 100px; background-color: #780ac2;">
+      <div class="card-header">Login</div>
+      <div class="card-body text-dark bg-white">
+        <form>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" required>
+          </div>
+          <button class="btn btn-dark btn-block">Confirm</button>
+        </form>
+      </div>
     </div>
     <script src='/javascripts/jquery.js'></script>
     <script src='/javascripts/popper.js'></script>
