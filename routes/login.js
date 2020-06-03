@@ -7,6 +7,11 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'IGC' });
 });
 
+/* GET register page. */
+router.get('/register', function(req, res, next) {
+  res.render('register', { title: 'IGC' });
+});
+
 router.get('/', function(req,res, next){
   //res.render('rank_search', { title: 'IGC', username: username, game: game});
 
