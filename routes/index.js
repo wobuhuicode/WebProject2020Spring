@@ -1,1 +1,1 @@
-// JavaScript source code
+var mysql = require('mysql');
