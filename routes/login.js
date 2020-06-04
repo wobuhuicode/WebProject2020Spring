@@ -3,11 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'IGC' });
+  res.render('login', { title: 'IGC' });req.session;
 });
 
 router.get('/register', function(req, res, next) {
   res.render('register', { title: 'IGC' });
+
 });
 
 router.get('/', function(req, res, next) {
