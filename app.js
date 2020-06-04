@@ -21,11 +21,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret:"bianxiaobo",
+  secret: 'bianxiaobo', // 对session id 相关的cookie 进行签名
   resave: true,
-  saveUninitialized:true
-}))
-
+  saveUninitialized: false, // 是否保存未初始化的会话
+  cookie: {
+    maxAge: 1000 * 60 * 3, // 设置 session 的有效时间，单位毫秒
+  }
+}));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
