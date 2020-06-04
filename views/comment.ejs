@@ -41,7 +41,7 @@
                 <div class="col-2"></div>
                 <div class="col-4">
                     <div class="row">
-                        <img src="/image/shili.jpg"  class="img-thumbnail" alt="...">
+                        <img src="<%= gameInfo.img%>"  class="img-thumbnail" alt="...">
                     </div>
                     <div class="row mt-4">
                         <form class="mx-auto">
@@ -67,7 +67,7 @@
 
 
 <!-- 模态框 -->
-<form method="post" action="#" class="form-horizontal" role="form" id="Form">
+
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -78,21 +78,34 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" role="form" action="/comment" method="get" id="commentForm">
+                        <input type="text" name="username" value="<%= username %>"  style="display: none">
+                        <fieldset class="starability-basic ml-auto">
+                            <input type="radio" id="cRating5-1" name="cRating" value="5" />
+                            <label for="cRating5-1" title="Amazing">5 stars</label>
+                            <input type="radio" id="cRating4-1" name="cRating" value="4" />
+                            <label for="cRating4-1" title="Very good">4 stars</label>
+                            <input type="radio" id="cRating3-1" name="cRating" value="3" />
+                            <label for="cRating3-1" title="Average">3 stars</label>
+                            <input type="radio" id="cRating2-1" name="cRating" value="2" />
+                            <label for="cRating2-1" title="Not good">2 stars</label>
+                            <input type="radio" id="cRating1-1" name="cRating" value="1" />
+                            <label for="cRating1-1" title="Terrible">1 star</label>
+                        </fieldset>
                         <div class="form-group">
-                            <textarea class="form-control" id="Textarea" rows="5"></textarea>
+                            <textarea class="form-control" id="Textarea" rows="5" name="commentText"></textarea>
                         </div>
+
                     </form>
                 </div>
                 <div class="modal-footer">
                     <!--  模态框底部样式，一般是提交或者确定按钮 -->
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" form="commentForm">Submit</button>
                 </div>
             </div>
         </div>
     </div>
-</form>
 
 <!--评论区-->
 <div class="card text-white bg-info mx-auto mt-5" style="width: 1280px">
