@@ -1,4 +1,5 @@
 var express = require('express');
+var express = require('express');
 var router = express.Router();
 var mysql=require('./SQL');
 
@@ -13,7 +14,7 @@ router.get('/', function (request, response) {
             ' cue as to their purpose, these users will simply be presented with the cont' +
             'ent of the badge. Depending on the specific situation, these badges may seem' +
             ' like random additional words or numbers at the end of a sentence, link, o' +
-            'r button.', type: 'MOBA'};
+            'r button.', type: 'MOBA',img:'/image/shili.jpg'};
     let comments = [
         {
             time:'2020',
@@ -29,7 +30,7 @@ router.get('/', function (request, response) {
         }
     ]
 
-    response.render('comment', {title:'IGC', username: username, gameInfo: gameInfo, comments: comments})
+    response.render('comment', {title:'IGC', username: 'abc', gameInfo: gameInfo, comments: comments})
 })
 
 module.exports = router;
