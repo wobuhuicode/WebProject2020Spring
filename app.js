@@ -7,6 +7,7 @@ var session =  require('express-session')
 
 var indexRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
+var gameRouter = require('./routes/game')
 
 var app = express();
 
@@ -28,8 +29,10 @@ app.use(session({
     maxAge: 1000 * 60 * 3, // 设置 session 的有效时间，单位毫秒
   }
 }));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/game', gameRouter)
 
 
 // catch 404 and forward to error handler

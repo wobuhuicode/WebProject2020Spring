@@ -2,143 +2,158 @@
 <html>
 <head>
     <title><%= title %></title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/zzsc.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css" >
+    <link rel="stylesheet" href="/stylesheets/style.css" >
     <link rel="stylesheet" type="text/css" href="/stylesheets/starability-basic.min.css" />
-
-
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top px-5">
     <a class="navbar-brand font-weight-bolder" href="#">IGC</a>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Comment</a>
+            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Game</a>
         </li>
     </ul>
+    <% if (username != null) { %>
+        <a class="nav-link text-white" href="#"><%= username %></a>
+        <button class="btn btn-danger">Log out</button>
+    <% } else {%>
+        <button class="btn btn-success" onclick="location.href='/login'">Login</button>
+    <% }%>
 </nav>
 <br><br>
 <!--详情信息-->
-<div class="container">
-    <div class="row">
-        <div class="col-7">
+<div class="card mx-auto bg-dark text-white" style="width: 1280px">
+    <div class="card-body">
+        <div class="container" >
             <div class="row">
-                <h2>LOL</h2>
-            </div>
-            <div class="row">
-                <h4>MOBA</h4>
-            </div>
-            <div class="row">
-                <p>《英雄联盟》（英文名：League of Legends/简称：LOL）是由美国拳头游戏（Riot Games）开发的一款
-                    英雄对战MOBA竞技网游，于2011年9月22日开启国服公测，中国大陆地区由腾讯游戏代理运营。
-                    游戏里拥有数百个个性英雄，并拥有排位系统、符文系统等特色养成系统，玩家将扮演一位召唤者，并选择你所
-                    信任的联盟国进入这个游戏的正义领域，为了控制瓦罗然的权利而奋战。
-                    《英雄联盟》致力于推动全球电子竞技的发展，除了联动各赛区发展职业联赛、打造电竞体系之外，每年还会举
-                    办“季中冠军赛”“全球总决赛”“All Star全明星赛”三大世界级赛事，获得了亿万玩家的喜爱，</p>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="row">
-                <img src="/image/shili.jpg"  class="img-thumbnail" alt="...">
-            </div>
-            <div class="row">
-                <h4>评分：</h4>
+                <div class="col-6">
+                    <div class="row">
+                        <h1 class="font-weight-bold purple-font"><%= gameInfo.name%></h1>
+                    </div>
+                    <div class="row">
+                        <h4><%= gameInfo.type%></h4>
+                    </div>
+                    <div class="row">
+                        <p><%= gameInfo.intro%></p>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+                <div class="col-4">
+                    <div class="row">
+                        <img src="/image/shili.jpg"  class="img-thumbnail" alt="...">
+                    </div>
+                    <div class="row mt-4">
+                        <form class="mx-auto">
+                            <fieldset class="starability-basic" disabled>
+                                <input type="radio" id="gRating5-1" name="gRating" value="5" />
+                                <label for="gRating5-1" title="Amazing">5 stars</label>
+                                <input type="radio" id="gRating4-1" name="gRating" value="4" />
+                                <label for="gRating4-1" title="Very good">4 stars</label>
+                                <input type="radio" id="gRating3-1" name="gRating" value="3" />
+                                <label for="gRating3-1" title="Average">3 stars</label>
+                                <input type="radio" id="gRating2-1" name="gRating" value="2" checked/>
+                                <label for="gRating2-1" title="Not good">2 stars</label>
+                                <input type="radio" id="gRating1-1" name="gRating" value="1" />
+                                <label for="gRating1-1" title="Terrible">1 star</label>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!--评论模态框-->
-<div class="container">
-    <!-- 模态框触发按钮 -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Comment
-    </button>
 
-    <!-- 模态框 -->
-    <form method="post" action="#" class="form-horizontal" role="form" id="Form">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Comment</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <textarea class="form-control" id="Textarea" rows="5"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <!--  模态框底部样式，一般是提交或者确定按钮 -->
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
+
+<!-- 模态框 -->
+<form method="post" action="#" class="form-horizontal" role="form" id="Form">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <textarea class="form-control" id="Textarea" rows="5"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <!--  模态框底部样式，一般是提交或者确定按钮 -->
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
-    </form>
-</div>
-<br>
+    </div>
+</form>
+
 <!--评论区-->
-<div class="container">
-    <h5>评论列表</h5>
-    <ul class="list-group comment_list">
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-10">
-                    <div>
-                        <!-- 楼层 -->
-                        <a href=""># 1楼</a>
-                        <!-- 时间 -->
-                        <span>2020-6-4 00:00</span>
-                        <!-- 用户名 -->
-                        <a href=""><span>|用户名</span></a>
-                        <!-- <a href="" class="pull-right">回复</a> -->
-                    </div>
-                    <div style="margin-top: 10px;">
-                        <!-- 评论内容 -->
-                        <p>《英雄联盟》（英文名：League of Legends/简称：LOL）是由美国拳头游戏（Riot Games）开发的一款 英雄对战MOBA竞技网游，
-                        </p>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <!-- 星星打分 -->
-                    <div class="row">
-                        <form>
-                            <fieldset class="starability-basic">
-                                <input type="radio" id="rate5-1" name="rating" value="5" />
-                                <label for="rate5-1" title="Amazing">5 stars</label>
-                                <input type="radio" id="rate4-1" name="rating" value="4" />
-                                <label for="rate4-1" title="Very good">4 stars</label>
-                                <input type="radio" id="rate3-1" name="rating" value="3" />
-                                <label for="rate3-1" title="Average">3 stars</label>
-                                <input type="radio" id="rate2-1" name="rating" value="2" />
-                                <label for="rate2-1" title="Not good">2 stars</label>
-                                <input type="radio" id="rate1-1" name="rating" value="1" />
-                                <label for="rate1-1" title="Terrible">1 star</label>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <!-- 显示打分分数 -->
-                    <div class="row">
-                        分数：4分
-                    </div>
-                </div>
+<div class="card text-white bg-info mx-auto mt-5" style="width: 1280px">
+    <div class="card-body container">
+        <div class="row">
+            <div class="col-10">
+                <h2 class="card-title">评论</h2>
             </div>
-        </li>
-    </ul>
+            <div class="col-2">
+                <button type="button" class="btn btn-dark btn-block " data-toggle="modal" data-target="#exampleModal">
+                    Comment
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-group comment_list">
+                    <%let floor = comments.length;comments.forEach(printComment);%>
+                    <%function printComment(comment, index) {%>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-11 text-dark">
+                                    <div>
+                                        <!-- 楼层 -->
+                                        <a href="">#<%= floor-- %></a>
+                                        <!-- 用户名 -->
+                                        <span><%= comment.username%>&nbsp&nbsp</span>
+                                        <!-- 时间 -->
+                                        <%= comment.time%>
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <!-- 评论内容 -->
+                                        <p>
+                                            <%= comment.content%>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <!-- 显示打分分数 -->
+                                    <span class="text-danger" style="font-size: 50px">
+                                        <%= comment.rate%>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- CSS only -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 <!-- JS, Popper.js, and jQuery -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="/javascripts/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="/javascripts/bootstrap.js"></script>
+<script>
+    //主游戏星星
+    $("input[name='gRating']")[5 - '<%- gameInfo.rating%>'].checked = true;
+</script>
 
 </body>
 </html>

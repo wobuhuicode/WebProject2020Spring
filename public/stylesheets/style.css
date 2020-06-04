@@ -1,5 +1,5 @@
 body {
-  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", "Microsoft YaHei", Helvetica, Arial, sans-serif;
   min-height: 100vh;
 }
 
@@ -7,7 +7,17 @@ nav {
   background-color: #780ac2;
 }
 
+.purple-font{
+  color: #b551ff;
+}
 
 a {
   color: #00B7FF;
+}
+
+.starability-container {
+  width: 350px;
+  margin: 0 auto;
+  padding: 2em 0;
+  border-bottom: 1px solid #D5D6E2;
 }
