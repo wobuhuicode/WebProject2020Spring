@@ -177,6 +177,18 @@ function update_comment(game_id,game_name,user_id, comment,score,callback){
         callback(result);
     });
 }
+
+var connection = mysql.createConnection({
+    host: 'localhost',
+    port: '3306',
+    user: 'root',
+    password: '1234',
+    database: 'igc'
+});
+
+connection.connect();
+
+
 module.exports={
     get_information,
     exist,
@@ -186,5 +198,6 @@ module.exports={
     update_star,
     update_now,
     exist_comment,
-    update_comment
+    update_comment,
+    connection
 };
