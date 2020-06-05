@@ -178,17 +178,69 @@ function update_comment(game_id,game_name,user_id, comment,score,callback){
     });
 }
 
-var connection = mysql.createConnection({
-    host: 'localhost',
-    port: '3306',
-    user: 'root',
-    password: '1234',
-    database: 'igc'
-});
+function updatecomment(gamename,callback){
+    let con = mysql.createConnection({
+        host: 'localhost',
+        user: 'user',
+        port: '3306',
+        password: '12345678',
+        database: 'sys'
+    });
+    let comments=Array(100),gameInfo;
+    con.connect();
+    con.query('select * from comments where GAME_ID='+1/*gamename*/,null,function (err, results) {
+        if (err) throw err;
+        else {
+            for(let i=0,j=results.length-1; i<results.length&&j>=0; i++,j--){
+                var d = new Date(results[j].CREATE_TIME);
+                var date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+                comments[i] = {username:results[j].USER_ID,time:date,rate:results[j].STAR,content:results[j].COMMENT};
+            }
+        }
+        con.query('select * from game where GAME_ID='+1/*gamename*/,null,function (err, results) {
+            if (err) throw err;
+            else {
+                gameInfo = {name:results[0].NAME,type:results[0].TYPE,intro:results[0].INTRODUCTION,img:'/image/shili.jpg'};
+            }
+            callback(comments,gameInfo);
+        })
+    })
+}
 
-connection.connect();
+function addcomments(gamename,star,comment,username){
+    let con = mysql.createConnection({
+        host: 'localhost',
+        user: 'user',
+        port: '3306',
+        password: '12345678',
+        database: 'sys'
+    });
+    con.connect();
+    let i=0;
+    con.query('select USER_ID from comments where GAME_NAME="'+gamename+'"',null,function (err, results) {
+        if (err) throw err;
+        else for(;i<results.length;i++){
+            if(results[i].USER_ID == username){
+                con.query('update comments set COMMENT="'+comment+'",'+'STAR="'+star+'" where USER_ID="'+username+'"',null,function (err, results) {
+                    if (err) throw err;
+                    else return true;
+                })
+                break;
+            }
+        }
+        if(i>=results.length){
+            con.query('select GAME_ID from game where NAME="'+gamename+'"',null,function (err, results) {
+                let gameid = results[0].GAME_ID;
+                if (err) throw err;
+                else con.query('insert into comments values("'+gameid+'","'+gamename+'","'+username+'","'+comment+'","'+star+'",'+'NOW())',null,function (err, results) {
+                    if (err) throw err;
+                    else return true;
+                })
+            });
+        }
+    })
 
-
+}
 module.exports={
     get_information,
     exist,
@@ -199,5 +251,6 @@ module.exports={
     update_now,
     exist_comment,
     update_comment,
-    connection
+    updatecomment,
+    addcomments,
 };
