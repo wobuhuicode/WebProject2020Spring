@@ -8,13 +8,6 @@ router.get('/', function (request, response) {
     request.query.name;
     //渲染页面
     if(typeof username == "undefined") username = null;
-    /*let gameInfo = {name: '英雄联盟', rating: 3, intro:'Note that depending on how the' +
-            'y are used, badges may be confusing for users of screen readers and sim' +
-            'ilar assistive technologies. While the styling of badges provides a visual' +
-            ' cue as to their purpose, these users will simply be presented with the cont' +
-            'ent of the badge. Depending on the specific situation, these badges may seem' +
-            ' like random additional words or numbers at the end of a sentence, link, o' +
-            'r button.', type: 'MOBA',img:'/image/shili.jpg'};*/
     mysql.updatecomment(request.query.name,addInfo);
     function addInfo(comments,gameInfo){
         response.render('comment', {title:'IGC', username: 'abc', gameInfo: gameInfo, comments: comments})
