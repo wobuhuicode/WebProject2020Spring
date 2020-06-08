@@ -20,11 +20,6 @@ router.get('/comment',function(req,res){
     let comment = params.commentText;
     let username = params.username;
     mysql.addcomments(gamename1,star,comment,username);
-    function result(data){
-        if(data.code==0) alert("评论失败！");
-        else if(data.code==1) alert("更新成功！");
-        else alert("评论成功！");
-    }
 })
 
 module.exports = router;
