@@ -3,15 +3,8 @@ var router = express.Router();
 var sql = require('./SQL');
 var url = require('url');
 
-/* GET home page. */
-//登录与注册
 router.get('/login', function(req, res, next) {
-    var user=req.session;
-    var usern=user.username;
-    res.render('login', {
-        title: 'IGC' ,
-        username:usern,
-    });
+    res.render('login',{title:'IGC'});
 });
 router.get('/register', function(req, res, next) {
     res.render('register', { title: 'IGC' });
@@ -79,13 +72,13 @@ router.post('/logout',function (req,res) {
 })
 //进入检索界面
 router.get('/', function(req, res, next) {
-    if(typeof req.query.user_name == "undefined"){
+    if(typeof req.session.username == "undefined"){
         res.redirect("/login");
     }else {
         sql.information(function (result) {
             res.render('rank_search.ejs', {
                 title: "Search",
-                username: req.query.user_name,//这个参数需要登录的部分传过来
+                username: req.session.username,//这个参数需要登录的部分传过来
                 game: {
                     t1: {
                         title: result[0].NAME,
