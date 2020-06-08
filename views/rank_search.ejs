@@ -15,7 +15,9 @@
     </ul>
     <% if (username != null) { %>
         <a class="nav-link text-white" href="#"><%= username %></a>
-        <button class="btn btn-danger">Log out</button>
+        <form action="logout" method="post">
+            <button type="submit" class="btn btn-danger">Log out</button>
+        </form>
     <% } else {%>
         <button class="btn btn-success" onclick="location.href='/login'">Login</button>
     <% }%>
@@ -30,9 +32,10 @@
             <span class="font-weight-light" style="font-size: 30px">Search</span>
         </div>
         <div class="col-12" >
-            <form class="mx-auto" style="width: 300px">
+            <form class="mx-auto" method="post" action="search-result" style="width: 300px">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="searchWord" required>
+                    <input type="text" class="form-control" name="game_name" id="searchWord" required>
+                    <input type="text" value="<%=username%>" class="form-control" name="user_name" style="display: none">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit" id="button-search">Go</button>
                     </div>

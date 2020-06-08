@@ -16,7 +16,9 @@
     </ul>
     <% if (username != null) { %>
         <a class="nav-link text-white" href="#"><%= username %></a>
-        <button class="btn btn-danger">Log out</button>
+        <form action="login" method="get">
+            <button type="submit" class="btn btn-danger">Log out</button>
+        </form>
     <% } else {%>
         <button class="btn btn-success" onclick="location.href='/login'">Login</button>
     <% }%>
@@ -52,7 +54,7 @@
                                 <label for="gRating4-1" title="Very good">4 stars</label>
                                 <input type="radio" id="gRating3-1" name="gRating" value="3" />
                                 <label for="gRating3-1" title="Average">3 stars</label>
-                                <input type="radio" id="gRating2-1" name="gRating" value="2" checked/>
+                                <input type="radio" id="gRating2-1" name="gRating" value="2" />
                                 <label for="gRating2-1" title="Not good">2 stars</label>
                                 <input type="radio" id="gRating1-1" name="gRating" value="1" />
                                 <label for="gRating1-1" title="Terrible">1 star</label>
@@ -78,8 +80,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" role="form" action="/comment" method="get" id="commentForm">
+                    <form class="form-horizontal" role="form" action="/game/comment" method="get" id="commentForm">
                         <input type="text" name="username" value="<%= username %>"  style="display: none">
+                        <input type="text" name="gamename" value="<%= gameInfo.name%>"  style="display: none">
                         <fieldset class="starability-basic ml-auto">
                             <input type="radio" id="cRating5-1" name="cRating" value="5" />
                             <label for="cRating5-1" title="Amazing">5 stars</label>
@@ -101,7 +104,7 @@
                 <div class="modal-footer">
                     <!--  模态框底部样式，一般是提交或者确定按钮 -->
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" form="commentForm">Submit</button>
+                    <button type="submit" class="btn btn-primary" form="commentForm" onclick="cc()">Submit</button>
                 </div>
             </div>
         </div>
@@ -123,14 +126,12 @@
         <div class="row">
             <div class="col-12">
                 <ul class="list-group comment_list">
-                    <%let floor = comments.length;comments.forEach(printComment);%>
+                    <%comments.forEach(printComment);%>
                     <%function printComment(comment, index) {%>
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-11 text-dark">
                                     <div>
-                                        <!-- 楼层 -->
-                                        <a href="">#<%= floor-- %></a>
                                         <!-- 用户名 -->
                                         <span><%= comment.username%>&nbsp&nbsp</span>
                                         <!-- 时间 -->
@@ -166,6 +167,13 @@
 <script>
     //主游戏星星
     $("input[name='gRating']")[5 - '<%- gameInfo.rating%>'].checked = true;
+    function cc(){
+        setTimeout('myrefresh()',300); //指定1秒刷新一次
+    }
+    function myrefresh()
+    {
+        window.location.reload();
+    }
 </script>
 
 </body>

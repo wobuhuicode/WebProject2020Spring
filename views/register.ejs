@@ -7,18 +7,19 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top px-5">
-    <a class="navbar-brand font-weight-bolder" href="#">IGC</a>
+    <a class="navbar-brand font-weight-bolder" href="#">IGC</a> 
     <ul class="navbar-nav mr-auto">
         </li>
         <li class="nav-item">
             <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Register</a>
         </li>
     </ul>
+    <button class="btn btn-light  my-2 my-sm-0" onclick="location.href='/'">back to homepage</button>
 </nav>
 <div class="card text-white mx-auto" style="max-width: 30rem; margin-top: 50px; background-color: #780ac2;">
     <div class="card-header">Register</div>
     <div class="card-body text-dark bg-white">
-        <form action="/regist">
+        <form action="/regist" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required>
